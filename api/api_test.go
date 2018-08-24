@@ -22,14 +22,19 @@ func TestReceive(t *testing.T) {
 		t.Fatalf("Valid user %s returned error %s", validUser, resp.Error)
 	}
 
-	address := "1KArpdjbJ52xuydEWePAhjbZU8HSxxVTuo"
+	address := "1LnupGcEPdpnAwjV1baencdF1CCVbi9izU"
 	if resp.ReceivingAddress != address {
 		t.Errorf("Invalid ReceivingAddress %s expected %s", resp.ReceivingAddress, address)
 	}
 
-	pubKey := "020d82ae1be2e3b6e59446d476d7012fe240730e9cb801265969a535eee332034f"
+	pubKey := "0256005db69a33049cf7562b87eeccca99d42bde6ac6359a283dd2d456a716d36e"
 	if resp.PublicKey != pubKey {
 		t.Errorf("Invalid PubKey %s expected %s", resp.PublicKey, pubKey)
+	}
+
+	cashAddr := "bitcoincash:qrv3jv3xj9e4fqg0lnmdvpkmmvh3af7j4vs8dwezq4"
+	if resp.CashAddr != cashAddr {
+		t.Errorf("Invalid CashAddr %s expected %s", resp.CashAddr, cashAddr)
 	}
 
 	api.SetNetwork("testnet")
@@ -47,6 +52,11 @@ func TestReceive(t *testing.T) {
 	testPubKey := "03d193439a2f06ed1121be5b4e61381386ffee5ec5bec33daf17e33ccb34622753"
 	if testResp.PublicKey != testPubKey {
 		t.Errorf("Invalid PubKey %s expected %s", testResp.PublicKey, testPubKey)
+	}
+
+	testCashAddr := "bitcoincash:qrv3jv3xj9e4fqg0lnmdvpkmmvh3af7j4vs8dwezq4"
+	if resp.CashAddr != testCashAddr {
+		t.Errorf("Invalid CashAddr %s expected %s", resp.CashAddr, testCashAddr)
 	}
 
 	invalidUser := "nope"
